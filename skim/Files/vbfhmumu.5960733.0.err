@@ -1,0 +1,13 @@
+TClass::Init:0: RuntimeWarning: no dictionary for class HepMCEvent is available
+TClass::Init:0: RuntimeWarning: no dictionary for class Event is available
+TClass::Init:0: RuntimeWarning: no dictionary for class Weight is available
+TClass::Init:0: RuntimeWarning: no dictionary for class GenParticle is available
+TClass::Init:0: RuntimeWarning: no dictionary for class SortableObject is available
+TClass::Init:0: RuntimeWarning: no dictionary for class Vertex is available
+TClass::Init:0: RuntimeWarning: no dictionary for class Jet is available
+TClass::Init:0: RuntimeWarning: no dictionary for class MissingET is available
+TClass::Init:0: RuntimeWarning: no dictionary for class Photon is available
+TClass::Init:0: RuntimeWarning: no dictionary for class Electron is available
+TClass::Init:0: RuntimeWarning: no dictionary for class Muon is available
+TClass::Init:0: RuntimeWarning: no dictionary for class Rho is available
+TClass::Init:0: RuntimeWarning: no dictionary for class ScalarHT is available
