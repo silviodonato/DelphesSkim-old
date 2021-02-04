@@ -1,0 +1,16 @@
+executable            = script.py
+arguments             = $(ClusterId) $(ProcId)
+output                = Files/vbfhmumu.$(ClusterId).$(ProcId).out
+error                 = Files/vbfhmumu.$(ClusterId).$(ProcId).err
+log                   = Files/vbfhmumu.$(ClusterId).log
++JobFlavour           = "espresso"
+
+
+should_transfer_files = YES
+transfer_input_files  = $(file)
+
+file = vbfHmm_powheg.sh
+queue 1
+
+file = DYToLL_madgraphMLM.sh
+queue 1
