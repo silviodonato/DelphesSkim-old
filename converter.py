@@ -6,6 +6,7 @@ from variables import *
 nEvents_max = -1
 nVariables = set()
 
+print("argv = ", argv)
 filename, sampleName, index = argv                     # "vbfHmm_powheg", "DYToLL_madgraphMLM"
 index = int(index, 10)
 
