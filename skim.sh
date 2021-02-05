@@ -1,5 +1,10 @@
 #!/bin/bash
 
+echo "Check kinit:", klist
+klist
+
+echo "Check xrootd", root -b -l -q  root://eoscms.cern.ch//store/group/upgrade/delphes_output/YR_Delphes/Delphes342pre14/VBFHToMuMu_M125_14TeV_powheg_pythia8_200PU/VBFHToMuMu_M125_14TeV_powheg_pythia8_1.root -e 'Delphes->Draw("","")'
+root -b -l -q  root://eoscms.cern.ch//store/group/upgrade/delphes_output/YR_Delphes/Delphes342pre14/VBFHToMuMu_M125_14TeV_powheg_pythia8_200PU/VBFHToMuMu_M125_14TeV_powheg_pythia8_1.root -e 'Delphes->Draw("","")'
 
 source /cvmfs/sft.cern.ch/lcg/views/LCG_99/x86_64-centos7-gcc8-opt/setup.sh
 
