@@ -8,9 +8,9 @@ nfilesPerJob = 10
 
 for sampleName in samples:
     for datasetNumber,dataset in enumerate(samples[sampleName]):
-        files = os.popen("xrdfs eoscms.cern.ch ls -u  %s"%dataset).read()
+        files = os.popen("xrdfs eoscms.cern.ch ls %s"%dataset).read()
         files = files.split("\n")
-        files = [f for f in files if len(f)>1 ]
+        files = ["root://eoscms.cern.ch/%s"%f for f in files if len(f)>1 ]
         filesGroups = [files[i:i+nfilesPerJob] for i in range(0,len(files),nfilesPerJob)]
         for fileGroupNumber, fileGroup in enumerate(filesGroups):
 #            print(files)
