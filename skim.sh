@@ -7,5 +7,4 @@ PATH=$PATH:/cvmfs/cms.cern.ch/slc7_amd64_gcc700/external/llvm/8.0.1/bin/
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/cvmfs/cms.cern.ch/slc7_amd64_gcc700/external/llvm/8.0.1/lib64/:.
 
 
-python /afs/cern.ch/user/m/mthakore/public/DelphesSkim/converter.py $1 $2
-
+python converter.py $1 $2

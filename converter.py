@@ -1,14 +1,14 @@
 import ROOT
+from sys import argv
 
-from samples import *
-from variables import *
+from variables import newVariables
 
 nEvents_max = -1
 nVariables = set()
 
 print("argv = ", argv)
-filename, sampleName, index = argv                     # "vbfHmm_powheg", "DYToLL_madgraphMLM"
-index = int(index, 10)
+filename, outputFileName, inputFileNames = argv                     # "vbfHmm_powheg", "DYToLL_madgraphMLM"
+inputFileNames = inputFileNames.split(",")
 
 InvariantMass_code ='''
 float InvariantMass (float pt1, float eta1, float phi1, float mass1, float pt2, float eta2, float phi2, float mass2)
@@ -21,18 +21,18 @@ float InvariantMass (float pt1, float eta1, float phi1, float mass1, float pt2, 
 }
 '''
 
-print("Running sample: %s"%sampleName)
+print("Running sample: %s"%outputFileName)
 
-for dataset_ in samples[sampleName]:
-    dataset = dataset_%index
-    print("Running dataset: %s"%dataset)
-    df = ROOT.RDataFrame("Delphes", dataset)
+print("Running on files: %s"%inputFileNames)
+fnames = ROOT.std.vector('string')()
+for n in inputFileNames: fnames.push_back(n)
+df = ROOT.RDataFrame("Delphes", fnames)
 
-    if nEvents_max>0:
-        print("I'm running on %d events"%nEvents_max)
-        df = df.Range(0, nEvents_max)
+if nEvents_max>0:
+    print("I'm running on %d events"%nEvents_max)
+    df = df.Range(0, nEvents_max)
 
-    df_out = df.Define("sum_size", "MuonTight_size+Jet_size")
+df_out = df.Define("sum_size", "MuonTight_size+Jet_size")
 
 for oldVariable in newVariables:
     df_out = df_out.Define(newVariables[oldVariable], oldVariable)
@@ -63,13 +63,13 @@ df_out = df_out.Filter("DiJet_mass > 400")
 
 hist = df_out.Histo1D("MuonTight_pt")
 print("Launch Snapshot")
-df_out.Snapshot("Events", "%s_%d.root"%(sampleName, index), nVariables)
+df_out.Snapshot("Events", "%s.root"%(outputFileName), nVariables)
 
-file = ROOT.TFile("%s_%d.root"%(sampleName, index),"update")
+file = ROOT.TFile("%s.root"%(outputFileName),"update")
 counter.Write()
 counter_1.Write()
 file.Close()
 
 
-print("Finished dataset %s"%dataset)
-print("Finished sample %s"%sampleName)
+print("Finished files: %s"%inputFileNames)
+print("Finished sample %s"%outputFileName)
